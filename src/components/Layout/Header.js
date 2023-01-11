@@ -1,24 +1,34 @@
 import React from "react";
+import { Container, Nav, Navbar} from "react-bootstrap/";
+import Cart from "../Cart/Cart";
 
-import HeaderCartButton from "./HeaderCartButton";
-import { Nav, Navbar } from "react-bootstrap/";
+
+
 const Header = (props) => {
   return (
     <>
-      <Navbar
-        fixed="top"
-        className="justify-content-center"
-        bg="dark"
-        variant="dark"
-      >
-        <Nav>
-          <Nav.Link href="/home">HOME</Nav.Link>
-          <Nav.Link eventKey="/store">STORE</Nav.Link>
-          <Nav.Link eventKey="/about">ABOUT</Nav.Link>
-          <HeaderCartButton onclick={props.onShowCart} />
-        </Nav>
+      <Navbar fixed="top" bg="dark" variant="dark">
+        <Container className="justify-content-center ">
+          <Nav>
+            <Nav.Link className="mx-4" href="/home">
+              HOME
+            </Nav.Link>
+            <Nav.Link className="mx-4" eventKey="/store">
+              STORE
+            </Nav.Link>
+            <Nav.Link className="ms-4" eventKey="/about">
+              ABOUT
+              
+            </Nav.Link>
+          </Nav>
+        </Container>
+        <Cart />
       </Navbar>
-      <div>The Generics</div>
+      <br />
+
+      <div className="text-center">
+        <p className="text-bg-secondary py-5 fw-bold h1">The Generics</p>
+      </div>
     </>
   );
 };
