@@ -5,13 +5,7 @@ import Contact from "../pages/contact";
 import { useContext } from "react";
 
 
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  
-} from "react-router-dom";
+import {BrowserRouter,Routes,Route,Link} from "react-router-dom";
 
 import About from "../pages/About";
 import Home from "../pages/Home";
@@ -47,6 +41,7 @@ const Header = (props) => {
  };
 
   return (
+   
     <BrowserRouter>
     <>
         
@@ -68,20 +63,19 @@ const Header = (props) => {
         )}
         </Container>
           {isLoggedIn && (
-        <Nav>
-          <NavLink as={Link} to="/profile">profile</NavLink>
-          <Button className="mx-3 btn btn-sm "  onClick={logoutHandler} >logout</Button>
-        </Nav>
+            <Nav>
+              <NavLink as={Link} to="/profile">profile</NavLink>
+              <Button className="mx-3 btn btn-sm "  onClick={logoutHandler} >logout</Button>
+            </Nav>
           )}
           
       
         {!isLoggedIn &&(
-        <Nav>
-        <NavLink as={Link} to="/login">Login</NavLink>
-        </Nav>
+          <Nav>
+            <NavLink as={Link} to="/login">Login</NavLink>
+          </Nav>
         )}
 
- 
         <Cart />
       </Navbar>
       <br />
@@ -96,14 +90,21 @@ const Header = (props) => {
         <Route path="/about" element={<About/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/store/*" element={<Store/>}/>
-        <Route path="/login" element={<AuthPage/>}/>
-        <Route path="/profile" element={<UserProfile/>}/>
+
+        {!authCtx.isLoggedIn && (
+          <Route path="/login" element={<AuthPage/>}/>
+        )}
+
+       
+          <Route path="/profile" element={ authCtx.isLoggedIn && <UserProfile/>}/>
+
+
+       
         
-        <Route path="/contact" element={<Contact onAddDetails={addHandler}/>}/>
-  
-        
+        <Route path="/contact" element={<Contact onAddDetails={addHandler}/>}/>       
       </Routes>
     </BrowserRouter>
+    
 
   );
 };
