@@ -19,6 +19,7 @@ import Store from "../pages/Store";
 import AuthPage from "../pages/AuthPage";
 
 import AuthContext from "../../store/auth-context";
+import UserProfile from "../Profile/UserProfile";
 
 
 
@@ -61,12 +62,15 @@ const Header = (props) => {
             <Nav.Link className="ms-4" as={Link} to='/contact'>Contact Us</Nav.Link>
           </Nav>
         )}
-        
-          
         </Container>
+          {isLoggedIn && (
+        <Nav>
+          <NavLink as={Link} to="/profile">profile</NavLink>
+        </Nav>
+          )}
       
         {!isLoggedIn &&(
-        <Nav >
+        <Nav>
         <NavLink as={Link} to="/login">Login</NavLink>
         </Nav>
         )}
@@ -86,6 +90,7 @@ const Header = (props) => {
         <Route path="/home" element={<Home/>}/>
         <Route path="/store/*" element={<Store/>}/>
         <Route path="/login" element={<AuthPage/>}/>
+        <Route path="/profile" element={<UserProfile/>}/>
         
         <Route path="/contact" element={<Contact onAddDetails={addHandler}/>}/>
   
