@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Nav, Navbar,NavLink} from "react-bootstrap/";
+import { Container, Nav, Navbar,NavLink,Button} from "react-bootstrap/";
 import Cart from "../Cart/Cart";
 import Contact from "../pages/contact";
 import { useContext } from "react";
@@ -42,6 +42,10 @@ const Header = (props) => {
 
  const isLoggedIn=authCtx.isLoggedIn;
 
+ const logoutHandler=()=>{
+  authCtx.logout();
+ };
+
   return (
     <BrowserRouter>
     <>
@@ -66,14 +70,17 @@ const Header = (props) => {
           {isLoggedIn && (
         <Nav>
           <NavLink as={Link} to="/profile">profile</NavLink>
+          <Button className="mx-3 btn btn-sm "  onClick={logoutHandler} >logout</Button>
         </Nav>
           )}
+          
       
         {!isLoggedIn &&(
         <Nav>
         <NavLink as={Link} to="/login">Login</NavLink>
         </Nav>
         )}
+
  
         <Cart />
       </Navbar>
