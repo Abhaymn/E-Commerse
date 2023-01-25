@@ -14,6 +14,8 @@ import AuthPage from "../pages/AuthPage";
 
 import AuthContext from "../../store/auth-context";
 import UserProfile from "../Profile/UserProfile";
+import LogPage from "../pages/LogPage";
+import LogContext from "../../store/log-context";
 
 
 
@@ -40,6 +42,10 @@ const Header = (props) => {
   authCtx.logout();
  };
 
+ const logCtx=useContext(LogContext);
+ const isLogIn=logCtx.isLogIn;
+ 
+
   return (
    
     <BrowserRouter>
@@ -53,10 +59,11 @@ const Header = (props) => {
           <Nav>
           
             <Nav.Link className="mx-4" as={Link} to='/home' >HOME</Nav.Link>
+
           
-            <Nav.Link className="mx-4" as={Link} to="/store" >STORE</Nav.Link>
            
             <Nav.Link className="ms-4" as={Link} to="/about">ABOUT</Nav.Link>
+            <NavLink className="ms-4" as={Link} to="/log">login</NavLink>
         
             <Nav.Link className="ms-4" as={Link} to='/contact'>Contact Us</Nav.Link>
           </Nav>
@@ -68,6 +75,10 @@ const Header = (props) => {
               <Button className="mx-3 btn btn-sm "  onClick={logoutHandler} >logout</Button>
             </Nav>
           )}
+           {isLogIn && 
+            <Nav>
+            <Nav.Link className="mx-4" as={Link} to="/store" >STORE</Nav.Link>
+           </Nav>}
           
       
         {!isLoggedIn &&(
@@ -95,11 +106,9 @@ const Header = (props) => {
           <Route path="/login" element={<AuthPage/>}/>
         )}
 
-       
-          <Route path="/profile" element={ authCtx.isLoggedIn && <UserProfile/>}/>
+       <Route path="log" element={<LogPage/>}/>
 
-
-       
+          <Route path="/profile" element={ authCtx.isLoggedIn && <UserProfile/>}/>       
         
         <Route path="/contact" element={<Contact onAddDetails={addHandler}/>}/>       
       </Routes>
