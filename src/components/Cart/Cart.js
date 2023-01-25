@@ -3,6 +3,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import CartButton from "../Layout/CartButton";
 import CartItem from "./CartItems";
 
+
 const Cart = (props) => {
   const [showCart, setShowCart] = useState(false);
 
@@ -21,6 +22,7 @@ const Cart = (props) => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <CartItem />
+    
         </Offcanvas.Body>
       </Offcanvas>
     </>
