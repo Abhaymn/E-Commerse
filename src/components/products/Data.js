@@ -1,11 +1,13 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import Card from "./Card";
-import classes from "./Store.module.css";
+import classes from "./Data.module.css";
+
 
 const productsArr = [
   {
     id: "1",
+    
     title: "ALBUM 1",
     price: 100,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
@@ -13,6 +15,7 @@ const productsArr = [
 
   {
     id: "2",
+    
     title: "ALBUM 2",
     price: 50,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
@@ -20,6 +23,7 @@ const productsArr = [
 
   {
     id: "3",
+    
     title: "ALBUM 3",
     price: 70,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
@@ -27,11 +31,13 @@ const productsArr = [
 
   {
     id: "4",
+    
     title: "ALBUM 4",
     price: 100,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
   },
 ];
+
 
 const Data = (props) => {
   const productList = productsArr.map((product) => {

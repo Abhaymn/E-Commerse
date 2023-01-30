@@ -1,8 +1,12 @@
-import { React, useContext } from "react";
+import { React, useContext} from "react";
 import { Button } from "react-bootstrap";
 import CartContext from "../../store/cart-context";
 
 const CartItem = (props) => {
+
+  
+
+
   let userEmail;
   if (localStorage.getItem('tokenId')) {
     userEmail = JSON.parse(localStorage.getItem('tokenId')).email;
@@ -24,14 +28,30 @@ const CartItem = (props) => {
   console.log(totalamnt);
 
 
-  const purchaseHandler = () => {
+
+  // async function purchaseHandler  (item) {
+  //  const response= await fetch('https://ecom-cb3c6-default-rtdb.firebaseio.com/cartitems.json',{
+  //     method:'POST',
+  //     body:JSON.stringify(item),
+  //     headers:{
+  //       'Content-Type':'application/json'
+  //     }
+  //   });
+  //   const data=await response.json();
+  //   console.log(data);
+  // };
+
+  const purchaseHandler=()=>{
 
     CartOrderContext.items.forEach(async (item) => {
       try {
-        await fetch(
-          `https://crudcrud.com/api/3c149a125b4442ea87b13a66d6b8b6c3/cartItem  ${userEmail}/${item._id}`,
+        await fetch( `https://ecom-cb3c6-default-rtdb.firebaseio.com/cartItem  ${userEmail}/${item._id}`,
           {
             method: 'POST',
+            body:JSON.stringify(item),
+            headers:{
+              'Content-Type':'application/json'
+            }
           }
         );
       } catch (err) {
@@ -69,6 +89,7 @@ const CartItem = (props) => {
                 <td>{cartitem.price}</td>
 
                 <td>{cartitem.quantity}</td>
+                
                 <td>
                   <Button
                     variant="danger"
@@ -80,6 +101,7 @@ const CartItem = (props) => {
               </tr>
             );
           })}
+          
         </tbody>
       </table>
       <div className=" fw-bold text-muted text-end">

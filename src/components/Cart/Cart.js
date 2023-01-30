@@ -9,6 +9,7 @@ const Cart = (props) => {
 
   return (
     <>
+    
       <CartButton onShowCart={() => setShowCart(!showCart)} />
       <Offcanvas
         show={showCart}

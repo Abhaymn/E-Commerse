@@ -1,9 +1,11 @@
 import { useState,useRef,useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 
+
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
+ 
   const emailInputRef=useRef();
   const passwordInputRef=useRef();
 
@@ -28,7 +30,7 @@ const AuthForm = () => {
       url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key= AIzaSyAV72UVS1N9apaRS8c5TTv7llvie3nDL0s';
     }
     else{
-      url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key= AIzaSyAV72UVS1N9apaRS8c5TTv7llvie3nDL0s ';
+      url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key= AIzaSyAV72UVS1N9apaRS8c5TTv7llvie3nDL0s';
     }
       fetch(url, {
         method:'POST',
@@ -56,7 +58,12 @@ const AuthForm = () => {
           });
         }
       }).then (data=>{
-        authCtx.login(data.idToken);
+        const expirationTime=new Date(
+          new Date().getTime()+ +data.expiresIn*1000
+            );
+        authCtx.login(data.idToken, expirationTime.toISOString());
+      
+        
       })
       .catch(err =>{
         alert(err.message);
@@ -65,6 +72,7 @@ const AuthForm = () => {
     }
 
   
+    
 
   return (
     <section className={classes.auth}>

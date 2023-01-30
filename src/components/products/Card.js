@@ -1,12 +1,8 @@
-import { Fragment, React, useContext } from "react";
+import { React, useContext } from "react";
 import { Card, Button } from "react-bootstrap";
 import CartContext from "../../store/cart-context";
 
-import {  Link, Routes} from "react-router-dom";
-
-import {Route } from "react-router-dom";
-import ProductDetails from "../pages/ProductDetails";
-
+import {  Link} from "react-router-dom";
 
 
 
@@ -19,7 +15,7 @@ const CardItems = (props) => {
  
   };
   return (
-    <Fragment>
+  
  <>
     
     <Card
@@ -28,10 +24,11 @@ const CardItems = (props) => {
       style={{ width: "20rem" }}
       className="text-center"
     >
-    
-      <Link to={`/products/${props.id}`} ><Card.Title className="text-center fw-bold ">{props.title}</Card.Title></Link>
       
-      <Card.Img className="p-2" variant="bottom" src={`${props.imageUrl}`} />
+    
+      <Card.Title className="text-center fw-bold ">{props.title}</Card.Title>
+      
+      <Link to={`/products/${props.productId}`} ><Card.Img className="p-2" variant="bottom" src={`${props.imageUrl}`} /></Link>
       <div className="card-body">
         <div className="d-flex justify-content-around">
           <span className="text-center fw-bold">
@@ -45,12 +42,12 @@ const CardItems = (props) => {
     </Card>
 
     </>
-<Routes>
-  <Route path="/products/:id" element={<ProductDetails/>}/>
-      
-</Routes>
+  
 
-</Fragment>
+   
+
+    
+
 
   );
 };

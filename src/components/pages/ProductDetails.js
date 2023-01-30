@@ -1,26 +1,26 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import React, { useContext } from 'react';
 
-function ProductDetails() {
-  let { id } = useParams();
-  const [product, setProduct] = useState(null);
-  
-  useEffect(() => {
-    axios.get(`https://my-api/products/${id}`)
-      .then(response => setProduct(response.data))
-  }, [id]);
-  
-  if (!product) {
-    return <p>Loading...</p>;
-  }
-  
+import classes from './ProductDetail.module.css';
+import productContext from '../../store/product-context';
+
+const ProductDetail = () => {
+  const productCtx = useContext(productContext);
+
+   
+
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <img src={product.image} alt={product.name} />
-      <p>Price: ${product.price}</p>
+    <div className={classes.product}>
+      
+      <img src={productCtx.imageUrl} alt={productCtx.title} />
+      <div className={classes.detail}>
+        <h3>{productCtx.title}</h3>
+        <h2>${productCtx.price.toFixed(2)}</h2>
+        <span className={classes.rating}>Rating <span>{productCtx.rating}&#9733;</span></span>
+        <p>GOOD PRODUCT</p>
+      </div>
     </div>
   );
-}
-export default ProductDetails;
+};
+
+
+export default ProductDetail;

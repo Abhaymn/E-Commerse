@@ -7,6 +7,7 @@
 //   removeItem: (id) => {},
 // });
 
+
 // export default CartContext;
 
 import React, { useState, useCallback } from 'react';
@@ -55,7 +56,7 @@ export const CartContextProvider = (props) => {
   const loginCartHandler = useCallback(async () => {
     try {
       const response = await fetch(
-        `https://crudcrud.com/api/3c149a125b4442ea87b13a66d6b8b6c3/cartItem${userEmail}`
+        `https://ecom-cb3c6-default-rtdb.firebaseio.com/cartItem${userEmail}`
       );
 
       const data = await response.json();

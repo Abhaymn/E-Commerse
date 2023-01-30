@@ -1,0 +1,41 @@
+.div {
+    background-color: #6e6b74;
+    text-align: center;
+    padding-bottom: 40px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* .div h1 {
+    margin: 0;
+    padding: 100px 0 20px 0;
+    background-color: #635f5f;
+    font-size: 100px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+  } */
+
+  
+.div button {
+    display:inline;
+    background-color:#77777f;
+    border: 2px solid #1c93ab;
+    margin: auto;
+    padding: 30px;
+    margin-top: 40px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.play-button {
+    border-radius: 50%;
+}
+
+.tourInfo {
+    margin-bottom: 80px;
+}
+
+.section h2 {
+    font-size: 40px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+}
